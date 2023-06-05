@@ -1,9 +1,8 @@
-package project4.day4;
+package com.project.day5;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -11,21 +10,31 @@ public class App
 {
     public static void main( String[] args )
     {
+    	WebDriverManager.chromedriver().setup();
+		WebDriver dr=new ChromeDriver();
+		dr.get("https://j2store.net/free/");
+		dr.manage().window().maximize();
+		String title=dr.getTitle();
+		if(title.equals("Home"))
+		{
+			System.out.println("Title are Same");
+		}
+		else
+		{
+			System.out.println("Title are different");
+		}
+		dr.findElement(By.xpath("//*[@id=\'Mod112\']/div/div/ul/li[1]/h4/a")).click();
+		if(dr.getTitle().equals("Shop"))
+		{
+			System.out.println("Title are Same");
+		}
+		else
+		{
+			System.out.println("Title are different");
+		}
+	}
 
-    	WebDriverManager.edgedriver().setup();
-    	WebDriver driver=new EdgeDriver();
-    	driver.get("https://demo.opencart.com/index.php?route=account/register&language=en-gb");
-    	driver.manage().window().maximize();
-    	driver.findElement(By.xpath("//*[@id=\"input-firstname\"]")).sendKeys("Nirmal");
-    	driver.findElement(By.xpath("//*[@id=\"input-lastname\"]")).sendKeys("s");
-    	driver.findElement(By.xpath("//*[@id=\"input-email\"]")).sendKeys("nirmal@gmail.com");
-driver.findElement(By.xpath("//*[@id=\"input-password\"]")).sendKeys("nirmal");
-    	
-    	JavascriptExecutor js=(JavascriptExecutor) driver;
-    	js.executeScript("window.scrollBy(0,2000)", "");
 
-
+        
     }
-    
-    
- }
+
